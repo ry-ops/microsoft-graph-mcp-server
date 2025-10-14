@@ -1,3 +1,5 @@
+<img src="https://github.com/ry-ops/microsoft-graph-mcp-server/blob/main/microsoft_graph_mcp_server.png" width="100%">
+
 # Microsoft Graph API MCP Server
 
 A Model Context Protocol (MCP) server that integrates Microsoft Graph API with Claude, enabling management of Microsoft 365 users, licenses, and groups.
