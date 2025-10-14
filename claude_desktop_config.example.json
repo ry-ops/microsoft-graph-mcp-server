@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "microsoft-graph": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/absolute/path/to/microsoft-graph-mcp",
+        "run",
+        "mcp_graph_server.py"
+      ],
+      "env": {
+        "MICROSOFT_TENANT_ID": "your-tenant-id",
+        "MICROSOFT_CLIENT_ID": "your-client-id",
+        "MICROSOFT_CLIENT_SECRET": "your-client-secret"
+      }
+    }
+  }
+}
