@@ -1,0 +1,222 @@
+{
+  "$schema": "https://agent-protocol.org/schema/v1/agent-card.json",
+  "name": "Microsoft Graph MCP Agent",
+  "description": "Agent for managing Microsoft 365 users, licenses, and groups through the Microsoft Graph API. Provides comprehensive M365 administration capabilities including user provisioning, license assignment, and group management.",
+  "version": "1.0.0",
+  "protocol": {
+    "type": "mcp",
+    "version": "1.0.0"
+  },
+  "endpoint": {
+    "url": "stdio://mcp_graph_server.py",
+    "type": "stdio",
+    "command": "uv",
+    "args": [
+      "run",
+      "mcp_graph_server.py"
+    ]
+  },
+  "capabilities": {
+    "streaming": false,
+    "tasks": true,
+    "tools": true,
+    "mcp_version": "1.0.0"
+  },
+  "skills": [
+    {
+      "id": "user_management",
+      "name": "User Management",
+      "description": "Create and manage Microsoft 365 user accounts",
+      "actions": [
+        {
+          "id": "create_user",
+          "name": "Create User",
+          "description": "Create a new Microsoft 365 user with specified credentials and profile",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string",
+                "description": "The display name for the user"
+              },
+              "user_principal_name": {
+                "type": "string",
+                "description": "The user principal name (email format, e.g., user@domain.com)"
+              },
+              "mail_nickname": {
+                "type": "string",
+                "description": "The mail alias for the user"
+              },
+              "password": {
+                "type": "string",
+                "description": "The initial password for the user"
+              },
+              "account_enabled": {
+                "type": "boolean",
+                "description": "Whether the account is enabled",
+                "default": true
+              },
+              "force_change_password": {
+                "type": "boolean",
+                "description": "Whether user must change password on first login",
+                "default": true
+              }
+            },
+            "required": ["display_name", "user_principal_name", "mail_nickname", "password"]
+          }
+        },
+        {
+          "id": "get_user",
+          "name": "Get User",
+          "description": "Retrieve details for a specific Microsoft 365 user",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID or user principal name"
+              }
+            },
+            "required": ["user_id"]
+          }
+        },
+        {
+          "id": "search_user",
+          "name": "Search Users",
+          "description": "Search for users by display name or email address",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "search_term": {
+                "type": "string",
+                "description": "The search term to look for in display names or emails"
+              }
+            },
+            "required": ["search_term"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "license_management",
+      "name": "License Management",
+      "description": "Manage Microsoft 365 license assignments",
+      "actions": [
+        {
+          "id": "assign_license",
+          "name": "Assign License",
+          "description": "Assign a Microsoft 365 license to a user with optional service plan customization",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID or user principal name"
+              },
+              "sku_id": {
+                "type": "string",
+                "description": "The SKU ID of the license to assign"
+              },
+              "disabled_plans": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of service plan IDs to disable (optional)",
+                "default": []
+              }
+            },
+            "required": ["user_id", "sku_id"]
+          }
+        },
+        {
+          "id": "list_available_licenses",
+          "name": "List Available Licenses",
+          "description": "Retrieve all available licenses (SKUs) in the tenant",
+          "input_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      ]
+    },
+    {
+      "id": "group_management",
+      "name": "Group Management",
+      "description": "Manage Microsoft 365 groups and memberships",
+      "actions": [
+        {
+          "id": "add_user_to_group",
+          "name": "Add User to Group",
+          "description": "Add a user to a Microsoft 365 group",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID or user principal name"
+              },
+              "group_id": {
+                "type": "string",
+                "description": "The group ID"
+              }
+            },
+            "required": ["user_id", "group_id"]
+          }
+        },
+        {
+          "id": "list_groups",
+          "name": "List Groups",
+          "description": "Retrieve all groups in the tenant",
+          "input_schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      ]
+    }
+  ],
+  "authentication": {
+    "type": "oauth2",
+    "flow": "client_credentials",
+    "token_url": "https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token",
+    "scopes": [
+      "https://graph.microsoft.com/.default"
+    ],
+    "required_permissions": [
+      "User.ReadWrite.All",
+      "Directory.ReadWrite.All",
+      "Group.ReadWrite.All",
+      "Organization.Read.All"
+    ],
+    "configuration": {
+      "environment_variables": [
+        "MICROSOFT_TENANT_ID",
+        "MICROSOFT_CLIENT_ID",
+        "MICROSOFT_CLIENT_SECRET"
+      ]
+    }
+  },
+  "metadata": {
+    "author": "ry-ops",
+    "license": "MIT",
+    "repository": "https://github.com/ry-ops/microsoft-graph-mcp-server",
+    "homepage": "https://github.com/ry-ops/microsoft-graph-mcp-server",
+    "tags": [
+      "microsoft-graph",
+      "microsoft-365",
+      "user-management",
+      "license-management",
+      "group-management",
+      "azure-ad",
+      "mcp"
+    ],
+    "supported_platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "language": "python",
+    "python_version": ">=3.10"
+  }
+}

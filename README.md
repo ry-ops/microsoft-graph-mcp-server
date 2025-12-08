@@ -10,6 +10,7 @@ A Model Context Protocol (MCP) server that integrates Microsoft Graph API with C
 - **License Management**: Assign licenses to users with optional service plan customization
 - **Group Management**: Add users to groups
 - **Query Operations**: List available licenses, groups, and search for users
+- **A2A Protocol Support**: Agent-to-Agent communication for automated M365 administration
 
 ## Prerequisites
 
@@ -150,6 +151,120 @@ The MCP server exposes the following tools to Claude:
 5. **list_groups**: List all groups in the tenant
 6. **get_user**: Get details for a specific user
 7. **search_user**: Search for users by name or email
+
+## Agent-to-Agent (A2A) Protocol Support
+
+This server supports the Agent-to-Agent (A2A) protocol, enabling automated communication and coordination between AI agents for Microsoft 365 administration tasks.
+
+### Agent Card
+
+The agent capabilities and interface are defined in the `agent-card.json` file at the repository root. This card provides:
+
+- **Agent Metadata**: Name, description, version, and platform information
+- **Protocol Information**: MCP version and stdio endpoint configuration
+- **Capability Declaration**: Tools, tasks, and streaming support
+- **Skill Definitions**: Organized action groups for user, license, and group management
+- **Authentication Requirements**: OAuth2 client credentials flow configuration
+
+### Available Skills
+
+The agent provides three main skill categories for A2A communication:
+
+#### 1. User Management
+- **create_user**: Provision new Microsoft 365 user accounts
+- **get_user**: Retrieve user profile information
+- **search_user**: Find users by name or email
+
+#### 2. License Management
+- **assign_license**: Allocate Microsoft 365 licenses to users
+- **list_available_licenses**: Query available license SKUs
+
+#### 3. Group Management
+- **add_user_to_group**: Add users to security or distribution groups
+- **list_groups**: Enumerate all groups in the tenant
+
+### Integration Examples
+
+#### Agent-to-Agent User Provisioning
+
+```json
+{
+  "agent": "microsoft-graph-mcp",
+  "skill": "user_management",
+  "action": "create_user",
+  "parameters": {
+    "display_name": "Jane Smith",
+    "user_principal_name": "jane.smith@company.com",
+    "mail_nickname": "janesmith",
+    "password": "SecurePassword123!",
+    "account_enabled": true
+  }
+}
+```
+
+#### Automated Onboarding Workflow
+
+An orchestrator agent can coordinate with this agent to automate employee onboarding:
+
+1. **Create User**: Call `create_user` skill to provision account
+2. **Assign License**: Call `assign_license` skill with appropriate SKU
+3. **Add to Groups**: Call `add_user_to_group` for department and project groups
+4. **Verify**: Call `get_user` to confirm account setup
+
+#### Multi-Agent License Management
+
+A license optimization agent can query available licenses and coordinate assignments:
+
+```json
+{
+  "workflow": "license_optimization",
+  "steps": [
+    {
+      "agent": "microsoft-graph-mcp",
+      "action": "list_available_licenses",
+      "store_result": "available_licenses"
+    },
+    {
+      "agent": "cost_optimizer",
+      "action": "analyze_usage",
+      "input": "available_licenses"
+    },
+    {
+      "agent": "microsoft-graph-mcp",
+      "action": "assign_license",
+      "parameters": {
+        "user_id": "user@company.com",
+        "sku_id": "optimized_sku_id"
+      }
+    }
+  ]
+}
+```
+
+### Authentication for A2A
+
+When integrating with other agents, ensure the following environment variables are configured:
+
+```bash
+MICROSOFT_TENANT_ID=your-tenant-id
+MICROSOFT_CLIENT_ID=your-client-id
+MICROSOFT_CLIENT_SECRET=your-client-secret
+```
+
+The agent uses OAuth2 client credentials flow with the following required permissions:
+- `User.ReadWrite.All`
+- `Directory.ReadWrite.All`
+- `Group.ReadWrite.All`
+- `Organization.Read.All`
+
+### Discovery and Registration
+
+Other agents can discover this agent's capabilities by reading the `agent-card.json` file, which follows the A2A protocol specification. The card includes:
+
+- Complete skill definitions with input schemas
+- Authentication requirements and configuration
+- Endpoint information for stdio-based MCP communication
+- Metadata for agent discovery and cataloging
 
 ## Security Considerations
 
