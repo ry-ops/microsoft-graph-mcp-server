@@ -13,7 +13,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.0.0",
+    "pytest>=9.0.3",
     "pytest-asyncio>=0.23.0",
     "black>=24.0.0",
     "ruff>=0.6.0"
@@ -27,7 +27,7 @@ build-backend = "hatchling.build"
 # A single-script server, not an installable package: uv just installs the dependencies.
 package = false
 dev-dependencies = [
-    "pytest>=8.0.0",
+    "pytest>=9.0.3",
     "pytest-asyncio>=0.23.0",
     "black>=24.0.0",
     "ruff>=0.6.0"
