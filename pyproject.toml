@@ -24,6 +24,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.uv]
+# A single-script server, not an installable package: uv just installs the dependencies.
+package = false
 dev-dependencies = [
     "pytest>=8.0.0",
     "pytest-asyncio>=0.23.0",
