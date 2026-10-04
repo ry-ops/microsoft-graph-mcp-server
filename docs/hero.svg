@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="960" height="420" role="img" aria-labelledby="t d">
+  <title id="t">Microsoft Graph MCP Server: Microsoft 365 admin in a conversation</title>
+  <desc id="d">You ask to onboard Jordan Lee to Sales with an E3 license. The server calls create_user, assign_license and add_user_to_group on Microsoft Graph; a user card appears in the tenant, the E3 license attaches, Jordan joins the Sales group, and the group-connected Sales SharePoint site lights up. All names are examples.</desc>
+  <defs><linearGradient id="title" x1="0" x2="1"><stop offset="0" stop-color="#00a4ef"/><stop offset=".5" stop-color="#7fba00"/><stop offset="1" stop-color="#ffb900"/></linearGradient></defs>
+  <style>
+    text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; fill: #e6ebf5; }
+    .muted { fill: #8b96ad; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    @keyframes ask { 0%,1.67% { opacity: 0; transform: translateY(8px); } 4.58%,95.00% { opacity: 1; transform: translateY(0); } 97.50%,100% { opacity: 0; } } .ask { animation: ask 12.0s infinite; }
+    @keyframes c1 { 0%,10.83% { opacity: 0; } 13.75%,95.00% { opacity: 1; } 97.50%,100% { opacity: 0; } } .c1 { animation: c1 12.0s infinite; }
+    @keyframes c2 { 0%,25.00% { opacity: 0; } 27.92%,95.00% { opacity: 1; } 97.50%,100% { opacity: 0; } } .c2 { animation: c2 12.0s infinite; }
+    @keyframes c3 { 0%,39.17% { opacity: 0; } 42.08%,95.00% { opacity: 1; } 97.50%,100% { opacity: 0; } } .c3 { animation: c3 12.0s infinite; }
+    @keyframes user { 0%,16.67% { opacity: 0; transform: scale(.9); } 19.58%,95.00% { opacity: 1; transform: scale(1); } 97.50%,100% { opacity: 0; } } .user { animation: user 12.0s infinite; }
+    @keyframes lic { 0%,30.83% { opacity: 0; transform: translateX(14px); } 33.75%,95.00% { opacity: 1; transform: translateX(0); } 97.50%,100% { opacity: 0; } } .lic { animation: lic 12.0s infinite; }
+    @keyframes grp { 0%,45.00% { opacity: 0; } 47.92%,95.00% { opacity: 1; } 97.50%,100% { opacity: 0; } } .grp { animation: grp 12.0s infinite; }
+    @keyframes site { 0%,53.33% { opacity: 0; } 56.25%,95.00% { opacity: 1; } 97.50%,100% { opacity: 0; } } .site { animation: site 12.0s infinite; }
+    @keyframes ans { 0%,66.67% { opacity: 0; transform: translateY(6px); } 69.58%,95.00% { opacity: 1; transform: translateY(0); } 97.50%,100% { opacity: 0; } } .ans { animation: ans 12.0s infinite; }
+    @keyframes link { 0%,45.00% { stroke-dashoffset: 120; opacity: 0; } 45.83% { opacity: 1; } 53.33%,95.00% { stroke-dashoffset: 0; opacity: 1; } 100% { opacity: 0; } } .link { stroke-dasharray: 120; animation: link 12.0s infinite; }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+  <rect width="960" height="420" rx="20" fill="#0f1420"/>
+  <g transform="translate(40 34)"><rect width="16" height="16" fill="#f25022"/><rect x="18" width="16" height="16" fill="#7fba00"/><rect y="18" width="16" height="16" fill="#00a4ef"/><rect x="18" y="18" width="16" height="16" fill="#ffb900"/></g>
+  <text x="88" y="66" font-size="40" font-weight="800" style="fill:url(#title)">Microsoft Graph MCP</text>
+  <text x="42" y="98" font-size="16" class="muted">Users, licenses, groups and SharePoint for Microsoft 365, in one conversation.</text>
+
+  <rect x="30" y="118" width="440" height="276" rx="16" fill="#161d2b" stroke="#2c3750"/>
+  <g class="ask"><rect x="76" y="134" width="378" height="34" rx="12" fill="#2a3550"/><text x="90" y="156" font-size="13.5">Onboard Jordan Lee to Sales with an E3 license</text></g>
+  <g class="c1"><rect x="46" y="184" width="280" height="26" rx="8" fill="#1d2536" stroke="#00a4ef"/><text x="58" y="202" font-size="12.5" class="mono" style="fill:#8fd6ff">create_user <tspan class="muted">jordan.lee@…</tspan></text></g>
+  <g class="c2"><rect x="46" y="216" width="280" height="26" rx="8" fill="#1d2536" stroke="#00a4ef"/><text x="58" y="234" font-size="12.5" class="mono" style="fill:#8fd6ff">assign_license <tspan class="muted">ENTERPRISEPACK</tspan></text></g>
+  <g class="c3"><rect x="46" y="248" width="280" height="26" rx="8" fill="#1d2536" stroke="#00a4ef"/><text x="58" y="266" font-size="12.5" class="mono" style="fill:#8fd6ff">add_user_to_group <tspan class="muted">Sales</tspan></text></g>
+  <g class="ans"><rect x="46" y="292" width="408" height="84" rx="12" fill="#1d2536"/>
+    <text x="60" y="318" font-size="14"><tspan font-weight="700">Jordan Lee</tspan> is set up: Office 365 E3,</text>
+    <text x="60" y="340" font-size="14">member of <tspan font-weight="700">Sales</tspan>, with the Sales site included.</text>
+    <text x="60" y="362" font-size="12" class="muted">Temporary password set; change required at first sign-in.</text></g>
+
+  <rect x="500" y="118" width="430" height="276" rx="16" fill="#161d2b" stroke="#2c3750"/>
+  <text x="520" y="146" font-size="11" font-weight="700" class="muted" letter-spacing=".1em">CONTOSO · MICROSOFT 365 TENANT</text>
+  <g class="user"><rect x="520" y="164" width="200" height="76" rx="12" fill="#10283a" stroke="#00a4ef"/>
+    <circle cx="552" cy="202" r="18" fill="#00a4ef"/><text x="552" y="208" text-anchor="middle" font-size="14" font-weight="800" style="fill:#0f1420">JL</text>
+    <text x="580" y="196" font-size="14" font-weight="700">Jordan Lee</text><text x="580" y="216" font-size="11" class="muted">jordan.lee@contoso.com</text></g>
+  <g class="lic"><rect x="740" y="176" width="170" height="52" rx="10" fill="#2a2510" stroke="#ffb900"/><text x="756" y="198" font-size="11" font-weight="700" class="muted" letter-spacing=".08em">LICENSE</text><text x="756" y="217" font-size="13" font-weight="700" style="fill:#ffe08a">Office 365 E3</text></g>
+  <path class="link" d="M620 240 L 620 290" stroke="#7fba00" stroke-width="2.5" fill="none"/>
+  <g class="grp"><rect x="520" y="290" width="200" height="76" rx="12" fill="#1a2810" stroke="#7fba00"/>
+    <text x="536" y="314" font-size="11" font-weight="700" class="muted" letter-spacing=".08em">GROUP</text><text x="536" y="336" font-size="15" font-weight="700" style="fill:#c4ec8a">Sales</text><text x="536" y="354" font-size="11" class="muted">42 members → 43</text></g>
+  <path class="link" d="M720 328 L 740 328" stroke="#7fba00" stroke-width="2.5" fill="none"/>
+  <g class="site"><rect x="740" y="290" width="170" height="76" rx="12" fill="#10283a" stroke="#00a4ef" stroke-dasharray="4 4"/>
+    <text x="756" y="314" font-size="11" font-weight="700" class="muted" letter-spacing=".08em">SHAREPOINT</text><text x="756" y="336" font-size="14" font-weight="700" style="fill:#8fd6ff">Sales site</text><text x="756" y="354" font-size="11" class="muted">access via the group</text></g>
+</svg>
